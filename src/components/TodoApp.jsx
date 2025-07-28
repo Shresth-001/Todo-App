@@ -5,7 +5,7 @@ import { FaPlus } from "react-icons/fa";
 import ShowTodes from "./ShowTodes";
 
 function TodoApp() {
-  const { todos, addTodes, } = useTodes();
+  const { todos, addTodes,deleteTodo } = useTodes();
   const [newText, setNewText] = useState("");
   const [check, setcheck] = useState(false);
 
@@ -77,6 +77,7 @@ function TodoApp() {
         <div className="flex flex-col bg-gray-200 no-scrollbar">
           <ShowTodes
             list={todos}
+            handleDelete={deleteTodo}
           />
         </div>
       </div>

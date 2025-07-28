@@ -1,7 +1,7 @@
 import React from "react";
 import Todo from "./Todo";
 
-function ShowTodes({ list}) {
+function ShowTodes({ list,handleDelete }) {
   return (
     <div className="h-96 overflow-auto no-scrollbar ">
       {list.length > 0 && (
@@ -24,6 +24,7 @@ function ShowTodes({ list}) {
                 <Todo
                   key={item.id}
                   todo={item}
+                  handleDelete={handleDelete}
                 />
               </div>
             </div>
