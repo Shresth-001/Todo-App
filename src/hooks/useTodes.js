@@ -24,10 +24,14 @@ function useTodes() {
     setCount(count + 1);
   };
 
+  const deleteTodo = (id) => {
+    settodos((prevTodes) => prevTodes.filter((item) => item.id != id));
+  };
 
   return {
     todos,
     addTodes,
+    deleteTodo
   };
 }
 export default useTodes;
