@@ -15,11 +15,11 @@ function useTodes() {
     localStorage.setItem("todes", JSON.stringify(todos));
   }, [todos]);
 
-  const addTodes = (text) => {
-    console.log(text)
-    if (text.trim() === "") return;
+  const addTodes = (data) => {
+    console.log(data)
+    if (data.trim() === "") return;
     settodos((prevTodes) => [
-      { id: count, todo: text, done: false },...prevTodes
+      { id: count, text: data, done: false },...prevTodes
     ]);
     setCount(count + 1);
   };
@@ -28,10 +28,23 @@ function useTodes() {
     settodos((prevTodes) => prevTodes.filter((item) => item.id != id));
   };
 
+  const updateTode = (nextTodes) => {
+    settodos(
+      todos.map((item) => {
+        if (item.id === nextTodes.id) {
+          return nextTodes;
+        } else {
+          return item;
+        }
+      })
+    );
+  };
+
   return {
     todos,
     addTodes,
-    deleteTodo
+    deleteTodo,
+    updateTode
   };
 }
 export default useTodes;
