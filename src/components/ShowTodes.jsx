@@ -1,7 +1,7 @@
 import React from "react";
 import Todo from "./Todo";
 
-function ShowTodes({ list,handleDelete }) {
+function ShowTodes({ list,handleDelete,handleUpdate }) {
   return (
     <div className="h-96 overflow-auto no-scrollbar ">
       {list.length > 0 && (
@@ -16,6 +16,9 @@ function ShowTodes({ list,handleDelete }) {
                     className=""
                     key={item.id}
                     checked={item.done}
+                    onChange={(e)=>{
+                      handleUpdate({...item,done:e.target.checked})
+                    }}
                   />
                 </label>
               </div>
@@ -25,6 +28,7 @@ function ShowTodes({ list,handleDelete }) {
                   key={item.id}
                   todo={item}
                   handleDelete={handleDelete}
+                  handleUpdate={handleUpdate}
                 />
               </div>
             </div>
