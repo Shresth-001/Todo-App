@@ -7,8 +7,8 @@ function ShowTodes({ list,handleDelete,handleUpdate }) {
       {list.length > 0 && (
         <>
           {list.map((item) => (
-            <div className="bg-white w-1/2 p-2  rounded-2xl shadow-md  ml-85 flex items-center  mb-3 scr ">
-              <div className="flex items-center justify-start ">
+            <div key={item.id} className="bg-white w-1/2 p-2  rounded-2xl shadow-md  ml-85 flex items-center  mb-3 scr ">
+              <div key={item.id} className="flex items-center justify-start ">
                 <label key={item.id}>
                   <input
                     name={item.id}

@@ -21,7 +21,7 @@ function useTodes() {
     settodos((prevTodes) => [
       { id: count, text: data, done: false },...prevTodes
     ]);
-    setCount(count + 1);
+    setCount(prevCount=>prevCount + 1);
   };
 
   const deleteTodo = (id) => {
@@ -39,12 +39,16 @@ function useTodes() {
       })
     );
   };
+  const clearComplete = () => {
+    settodos((prevTodes) => prevTodes.filter((item) => !item.done));
+  };
 
   return {
     todos,
     addTodes,
     deleteTodo,
-    updateTode
+    updateTode,
+    clearComplete
   };
 }
 export default useTodes;
