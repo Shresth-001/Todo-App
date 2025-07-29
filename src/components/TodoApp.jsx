@@ -5,9 +5,10 @@ import { FaPlus } from "react-icons/fa";
 import ShowTodes from "./ShowTodes";
 
 function TodoApp() {
-  const { todos, addTodes,deleteTodo,updateTode } = useTodes();
+  const { todos, addTodes,deleteTodo,updateTode,clearComplete } = useTodes();
   const [newText, setNewText] = useState("");
   const [check, setcheck] = useState(false);
+  const [filterStatus, setFilterStatus] = useState("all");
 
   const handleChange = (e) => {
     setNewText(e.target.value);
@@ -24,6 +25,17 @@ function TodoApp() {
   const handleAddButton = () => {
     setcheck(!check);
   };
+  const filteredTodes = useMemo(() => {
+    switch (filterStatus) {
+      case "done":
+        return todos.filter((todo) => todo.done === true);
+      case "notDone":
+        return todos.filter((todo) => todo.done === false);
+      case "all":
+      default:
+        return todos;
+    }
+  }, [todos, filterStatus]);
 
   
   return (
@@ -39,20 +51,23 @@ function TodoApp() {
             </h1>
           </div>
           <div className="text-gray-500">
-            <button
+            <button 
+              onClick={()=>setFilterStatus('all')}
               className="bg-white rounded-2xl px-8 py-0.5 mr-2 "
             >
               All
             </button>
             <button
+              onClick={()=>setFilterStatus('done')}
               className="bg-white rounded-2xl px-6 py-0.5 mr-2"
             >
-              Done
+              Completed
             </button>
             <button
+              onClick={()=>setFilterStatus('notDone')}
               className="bg-white rounded-2xl px-6 py-0.5 mr-2"
             >
-              NotDone
+              Remaining
             </button>
           </div>
         </div>
@@ -76,7 +91,7 @@ function TodoApp() {
         </div>
         <div className="flex flex-col bg-gray-200 no-scrollbar">
           <ShowTodes
-            list={todos}
+            list={filteredTodes}
             handleDelete={deleteTodo}
             handleUpdate={updateTode}
           />
