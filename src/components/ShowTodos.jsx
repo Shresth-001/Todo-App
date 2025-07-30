@@ -1,7 +1,7 @@
 import React from "react";
 import Todo from "./Todo";
 
-function ShowTodes({ list,handleDelete,handleUpdate }) {
+function ShowTodos({ list,handleDelete,handleUpdate }) {
   return (
     <div className="h-96 overflow-auto no-scrollbar ">
       {list.length > 0 && (
@@ -39,4 +39,4 @@ function ShowTodes({ list,handleDelete,handleUpdate }) {
   );
 }
 
-export default ShowTodes;
+export default ShowTodos;
