@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
-import useTodes from "../hooks/useTodes";
 import InputText from "./InputText";
 import { FaPlus } from "react-icons/fa";
-import ShowTodes from "./ShowTodes";
+import useTodos from "../hooks/useTodos";
+import ShowTodos from "./ShowTodos";
 
 function TodoApp() {
-  const { todos, addTodes,deleteTodo,updateTode,clearComplete } = useTodes();
+  const { todos, addTodo,deleteTodo,updateTodo,clearComplete } = useTodos();
   const [newText, setNewText] = useState("");
   const [check, setcheck] = useState(false);
   const [filterStatus, setFilterStatus] = useState("all");
@@ -15,9 +15,8 @@ function TodoApp() {
   };
   const handleAdd = (e) => {
     e.preventDefault();
-    console.log(newText);
     if (newText.trim() !== "") {
-      addTodes(newText);
+      addTodo(newText);
     }
     setNewText("");
     setcheck(!check);
@@ -25,7 +24,7 @@ function TodoApp() {
   const handleAddButton = () => {
     setcheck(!check);
   };
-  const filteredTodes = useMemo(() => {
+  const filteredTodos = useMemo(() => {
     switch (filterStatus) {
       case "done":
         return todos.filter((todo) => todo.done === true);
@@ -90,10 +89,10 @@ function TodoApp() {
           )}
         </div>
         <div className="flex flex-col bg-gray-200 no-scrollbar">
-          <ShowTodes
-            list={filteredTodes}
+          <ShowTodos
+            list={filteredTodos}
             handleDelete={deleteTodo}
-            handleUpdate={updateTode}
+            handleUpdate={updateTodo}
           />
         </div>
       </div>
